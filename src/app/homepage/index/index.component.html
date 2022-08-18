@@ -17,11 +17,11 @@
         <h3>Featured Posts</h3>
         <div *ngFor="let f of featured" class="post">
             <div class="Image">
-                <img *ngIf="f?.['attributes']?.['Image']?.['data']?.['attributes']?.['formats']?.['thumbnail']?.['url']" src="https://cms.afrozenpeach.net{{f['attributes']['Image']['data']['attributes']['formats']['thumbnail']['url']}}">
+                <a href="{{ router.url }}/post/{{ f['id'] }}/{{ f['attributes']['Slug'] }}"><img *ngIf="f?.['attributes']?.['Image']?.['data']?.['attributes']?.['formats']?.['thumbnail']?.['url']" src="https://cms.afrozenpeach.net{{f['attributes']['Image']['data']['attributes']['formats']['thumbnail']['url']}}"></a>
             </div>
 
             <div class="Title">
-                <b>{{ f["attributes"]["Title"] }}</b> by {{ f["attributes"]["Author"]["data"]["attributes"]["name"] }}<br/>
+                <a href="{{ router.url }}/post/{{ f['id'] }}/{{ f['attributes']['Slug'] }}"><b>{{ f["attributes"]["Title"] }}</b></a> by {{ f["attributes"]["Author"]["data"]["attributes"]["name"] }}<br/>
                 Posted on {{ f["attributes"]["PostDate"] | amDateFormat: 'YYYY-MM-DD' }}
             </div>
 
@@ -35,11 +35,11 @@
         <h3>Recent Posts</h3>
         <div *ngFor="let p of posts" class="post">
             <div class="Thumbnail">
-                <img *ngIf="p?.['attributes']?.['Image']?.['data']?.['attributes']?.['formats']?.['thumbnail']?.['url']" src="https://cms.afrozenpeach.net{{p['attributes']['Image']['data']['attributes']['formats']['thumbnail']['url']}}">
+                <a href="{{ router.url }}/post/{{ p['id'] }}/{{ p['attributes']['Slug'] }}"><img *ngIf="p?.['attributes']?.['Image']?.['data']?.['attributes']?.['formats']?.['thumbnail']?.['url']" src="https://cms.afrozenpeach.net{{p['attributes']['Image']['data']['attributes']['formats']['thumbnail']['url']}}"></a>
             </div>
 
             <div class="Title">
-                <b>{{ p["attributes"]["Title"] }}</b> by {{ p["attributes"]["Author"]["data"]["attributes"]["name"] }}<br/>
+                <a href="{{ router.url }}/post/{{ p['id'] }}/{{ p['attributes']['Slug'] }}"><b>{{ p["attributes"]["Title"] }}</b></a> by {{ p["attributes"]["Author"]["data"]["attributes"]["name"] }}<br/>
                 Posted on {{ p["attributes"]["PostDate"] | amDateFormat: 'YYYY-MM-DD' }}
             </div>
 

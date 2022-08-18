@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WindowProviderService } from 'src/app/services/windowProvider/window-provider.service';
 import { Apollo, gql } from 'apollo-angular';
 
@@ -19,6 +19,7 @@ const blogQuery = gql`
                 PostDate,
                 Title,
                 Summary,
+                Slug,
                 Image {
                   data {
                     id,
@@ -49,6 +50,7 @@ const blogQuery = gql`
                 PostDate,
                 Title,
                 Summary,
+                Slug,
                 Image {
                   data {
                     id,
@@ -95,6 +97,7 @@ export class IndexComponent implements OnInit {
   constructor(
     private windowService: WindowProviderService,
     private route: ActivatedRoute,
+    public router: Router,
     private apollo: Apollo
   ) {
     this.hostname = windowService.getHostname();
