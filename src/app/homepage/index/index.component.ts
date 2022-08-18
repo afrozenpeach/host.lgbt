@@ -11,7 +11,14 @@ const blogQuery = gql`
         attributes {
           Name,
           Subtitle,
-          Title
+          Title,
+          Image {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
         }
       }
     }
@@ -42,6 +49,7 @@ export class IndexComponent implements OnInit {
   name = '';
   title = '';
   subtitle = '';
+  imageUrl = '';
 
   constructor(
     private windowService: WindowProviderService,
@@ -75,6 +83,7 @@ export class IndexComponent implements OnInit {
           this.name = result?.data?.blogs?.data[0].attributes.Name;
           this.title = result?.data?.blogs?.data[0].attributes.Title;
           this.subtitle = result?.data?.blogs?.data[0].attributes.Subtitle;
+          this.imageUrl = result?.data?.blogs?.data[0].attributes.Image.data.attributes.url;
         } else {
           this.apollo
             .watchQuery({
