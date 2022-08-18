@@ -25,7 +25,9 @@ const blogQuery = gql`
                     attributes {
                       name,
                       alternativeText,
-                      caption
+                      caption,
+                      url,
+                      formats
                     }
                   }
                 },
@@ -53,7 +55,9 @@ const blogQuery = gql`
                     attributes {
                       name,
                       alternativeText,
-                      caption
+                      caption,
+                      url,
+                      formats
                     }
                   }
                 },

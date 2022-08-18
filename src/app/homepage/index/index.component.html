@@ -15,17 +15,37 @@
 
     <div class="featured" *ngIf="featured.length > 0">
         <h3>Featured Posts</h3>
-        <div *ngFor="let f of featured">
-            <b>{{ f["attributes"]["Title"] }}</b> by {{ f["attributes"]["Author"]["data"]["attributes"]["name"] }}<br/>
-            Posted on {{ f["attributes"]["PostDate"] | amDateFormat: 'YYYY-MM-DD' }}
+        <div *ngFor="let f of featured" class="post">
+            <div class="Image">
+                <img *ngIf="f?.['attributes']?.['Image']?.['data']?.['attributes']?.['formats']?.['thumbnail']?.['url']" src="https://cms.afrozenpeach.net{{f['attributes']['Image']['data']['attributes']['formats']['thumbnail']['url']}}">
+            </div>
+
+            <div class="Title">
+                <b>{{ f["attributes"]["Title"] }}</b> by {{ f["attributes"]["Author"]["data"]["attributes"]["name"] }}<br/>
+                Posted on {{ f["attributes"]["PostDate"] | amDateFormat: 'YYYY-MM-DD' }}
+            </div>
+
+            <div class="Summary">
+                {{ f["attributes"]["Summary"] }}
+            </div>
         </div>
     </div>
 
     <div class="posts" *ngIf="posts.length > 0">
         <h3>Recent Posts</h3>
-        <div *ngFor="let p of posts">
-            <b>{{ p["attributes"]["Title"] }}</b> by {{ p["attributes"]["Author"]["data"]["attributes"]["name"] }}<br/>
-            Posted on {{ p["attributes"]["PostDate"] | amDateFormat: 'YYYY-MM-DD' }}
+        <div *ngFor="let p of posts" class="post">
+            <div class="Thumbnail">
+                <img *ngIf="p?.['attributes']?.['Image']?.['data']?.['attributes']?.['formats']?.['thumbnail']?.['url']" src="https://cms.afrozenpeach.net{{p['attributes']['Image']['data']['attributes']['formats']['thumbnail']['url']}}">
+            </div>
+
+            <div class="Title">
+                <b>{{ p["attributes"]["Title"] }}</b> by {{ p["attributes"]["Author"]["data"]["attributes"]["name"] }}<br/>
+                Posted on {{ p["attributes"]["PostDate"] | amDateFormat: 'YYYY-MM-DD' }}
+            </div>
+
+            <div class="Summary">
+                {{ p["attributes"]["Summary"] }}
+            </div>
         </div>
     </div>
 </body>
