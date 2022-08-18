@@ -1,0 +1,35 @@
+<div class="featured" *ngIf="featured.length > 0">
+    <h3>Featured Posts</h3>
+    <div *ngFor="let f of featured" class="post">
+        <div class="Image">
+            <a href="{{ router.url }}/post/{{ f['id'] }}/{{ f['attributes']['Slug'] }}"><img *ngIf="f?.['attributes']?.['Image']?.['data']?.['attributes']?.['formats']?.['thumbnail']?.['url']" src="https://cms.afrozenpeach.net{{f['attributes']['Image']['data']['attributes']['formats']['thumbnail']['url']}}"></a>
+        </div>
+
+        <div class="Title">
+            <a href="{{ router.url }}/post/{{ f['id'] }}/{{ f['attributes']['Slug'] }}"><b>{{ f["attributes"]["Title"] }}</b></a> by {{ f["attributes"]["Author"]["data"]["attributes"]["name"] }}<br/>
+            Posted on {{ f["attributes"]["PostDate"] | amDateFormat: 'YYYY-MM-DD' }}
+        </div>
+
+        <div class="Summary">
+            {{ f["attributes"]["Summary"] }}
+        </div>
+    </div>
+</div>
+
+<div class="posts" *ngIf="posts.length > 0">
+    <h3>Recent Posts</h3>
+    <div *ngFor="let p of posts" class="post">
+        <div class="Thumbnail">
+            <a href="{{ router.url }}/post/{{ p['id'] }}/{{ p['attributes']['Slug'] }}"><img *ngIf="p?.['attributes']?.['Image']?.['data']?.['attributes']?.['formats']?.['thumbnail']?.['url']" src="https://cms.afrozenpeach.net{{p['attributes']['Image']['data']['attributes']['formats']['thumbnail']['url']}}"></a>
+        </div>
+
+        <div class="Title">
+            <a href="{{ router.url }}/post/{{ p['id'] }}/{{ p['attributes']['Slug'] }}"><b>{{ p["attributes"]["Title"] }}</b></a> by {{ p["attributes"]["Author"]["data"]["attributes"]["name"] }}<br/>
+            Posted on {{ p["attributes"]["PostDate"] | amDateFormat: 'YYYY-MM-DD' }}
+        </div>
+
+        <div class="Summary">
+            {{ p["attributes"]["Summary"] }}
+        </div>
+    </div>
+</div>

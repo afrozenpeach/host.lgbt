@@ -7,6 +7,7 @@ import { WINDOW_PROVIDERS } from './services/windowProvider/window-provider';
 import { WindowProviderService } from './services/windowProvider/window-provider.service';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
+import { IndexContentComponent } from './homepage/index-content/index-content.component';
 
 @NgModule({
   declarations: [
