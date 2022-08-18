@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WINDOW_PROVIDERS } from './services/windowProvider/window-provider';
 import { WindowProviderService } from './services/windowProvider/window-provider.service';
+import { GraphQLModule } from './graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import { WindowProviderService } from './services/windowProvider/window-provider
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    GraphQLModule,
+    HttpClientModule
   ],
   providers: [
     WINDOW_PROVIDERS,
