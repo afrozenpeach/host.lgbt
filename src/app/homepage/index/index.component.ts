@@ -18,6 +18,19 @@ const blogQuery = gql`
   }
 `;
 
+const altDomainQuery = gql`
+  query getPrimaryDomain($domain: JSON!) {
+    blogs(filters:{AlternateDomains:{contains:$domain}}) {
+      data {
+        id,
+        attributes {
+          Domain
+        }
+      }
+    }
+  }
+`;
+
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -57,9 +70,25 @@ export class IndexComponent implements OnInit {
         }
       })
       .valueChanges.subscribe((result: any) => {
-        this.name = result?.data?.blogs?.data[0].attributes.Name;
-        this.title = result?.data?.blogs?.data[0].attributes.Title;
-        this.subtitle = result?.data?.blogs?.data[0].attributes.Subtitle;
+
+        if (result?.data?.blogs?.data.length > 0) {
+          this.name = result?.data?.blogs?.data[0].attributes.Name;
+          this.title = result?.data?.blogs?.data[0].attributes.Title;
+          this.subtitle = result?.data?.blogs?.data[0].attributes.Subtitle;
+        } else {
+          this.apollo
+            .watchQuery({
+              query: altDomainQuery,
+              variables: {
+                domain: this.hostname
+              }
+            })
+            .valueChanges.subscribe((result: any) => {
+              if (result?.data?.blogs?.data.length > 0) {
+                this.windowService.forward('https://' + result.data.blogs.data[0].attributes.Domain);
+              }
+            })
+        }
       });
   }
 

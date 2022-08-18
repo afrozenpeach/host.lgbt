@@ -13,4 +13,8 @@ export class WindowProviderService {
   getHostname() : string {
     return this.window.location.hostname;
   }
+
+  forward(newDomain: string) {
+    this.window.location.href = newDomain;
+  }
 }
