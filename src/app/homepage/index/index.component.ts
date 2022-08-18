@@ -12,6 +12,62 @@ const blogQuery = gql`
           Name,
           Subtitle,
           Title
+          Featured:BlogPosts(filters:{Featured:{eq:true}},sort:"PostDate:desc") {
+            data {
+              id,
+              attributes {
+                PostDate,
+                Title,
+                Summary,
+                Image {
+                  data {
+                    id,
+                    attributes {
+                      name,
+                      alternativeText,
+                      caption
+                    }
+                  }
+                },
+                Author {
+                  data {
+                    id,
+                    attributes {
+                      name
+                    }
+                  }
+                }
+              }
+            }
+          }
+          BlogPosts(filters:{Featured:{eq:false}},sort:"PostDate:desc") {
+            data {
+              id,
+              attributes {
+                PostDate,
+                Title,
+                Summary,
+                Image {
+                  data {
+                    id,
+                    attributes {
+                      name,
+                      alternativeText,
+                      caption
+                    }
+                  }
+                },
+                Author {
+                  data {
+                    id,
+                    attributes {
+                      name
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -29,6 +85,8 @@ export class IndexComponent implements OnInit {
   name = '';
   title = '';
   subtitle = '';
+  posts = [];
+  featured = [];
 
   constructor(
     private windowService: WindowProviderService,
@@ -58,6 +116,9 @@ export class IndexComponent implements OnInit {
             this.name = result?.data?.blogs?.data[0].attributes.Name;
             this.title = result?.data?.blogs?.data[0].attributes.Title;
             this.subtitle = result?.data?.blogs?.data[0].attributes.Subtitle;
+
+            this.featured = result?.data?.blogs.data[0].attributes.Featured?.data;
+            this.posts = result?.data?.blogs.data[0].attributes.BlogPosts?.data;
           });
       });
     }
