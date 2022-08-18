@@ -7,7 +7,7 @@
 
         <div class="Title">
             <a href="{{ router.url }}/post/{{ f['id'] }}/{{ f['attributes']['Slug'] }}"><b>{{ f["attributes"]["Title"] }}</b></a> by {{ f["attributes"]["Author"]["data"]["attributes"]["name"] }}<br/>
-            Posted on {{ f["attributes"]["PostDate"] | amDateFormat: 'YYYY-MM-DD' }}
+            Posted on {{ f["attributes"]["PostDate"] | amDateFormat: "LL" }}
         </div>
 
         <div class="Summary">
@@ -25,7 +25,7 @@
 
         <div class="Title">
             <a href="{{ router.url }}/post/{{ p['id'] }}/{{ p['attributes']['Slug'] }}"><b>{{ p["attributes"]["Title"] }}</b></a> by {{ p["attributes"]["Author"]["data"]["attributes"]["name"] }}<br/>
-            Posted on {{ p["attributes"]["PostDate"] | amDateFormat: 'YYYY-MM-DD' }}
+            Posted on {{ p["attributes"]["PostDate"] | amDateFormat: "LL" }}
         </div>
 
         <div class="Summary">

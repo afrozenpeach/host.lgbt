@@ -1,1 +1,4 @@
-<p>post works!</p>
+<h3>{{ post?.attributes?.Title }}</h3>
+Posted on {{ post?.attributes?.PostDate | amDateFormat: "LL"}} by {{ post?.attributes?.Author?.data?.attributes?.name}}
+
+<div [innerHtml]=post?.attributes?.Content></div>
